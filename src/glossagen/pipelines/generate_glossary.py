@@ -1,10 +1,28 @@
 """Module for extracting and generating glossaries from research documents."""
 
+import re
 from typing import Any
 
 import dspy
+from pydantic import BaseModel, Field
 
 from glossagen.utils import ResearchDoc, ResearchDocLoader, init_dspy
+
+
+class TerminusTechnicus(BaseModel):
+    """A terminus technicus, i.e. a techincal term in materials science and chemistry."""
+
+    term: str = Field(..., title="The technical term.")
+    definition: str = Field(..., title="The definition of the technical term.")
+
+
+class Text2GlossarySignature(dspy.Signature):
+    """Generating a list of termini technici from a text in materials science and chemistry."""
+
+    text: str = dspy.InputField(desc="The text to extract the termini technici from.")
+    glossary: list[TerminusTechnicus] = dspy.OutputField(
+        desc="The list of termini technici extracted from the text."
+    )
 
 
 class GlossaryGenerator:
@@ -31,9 +49,50 @@ class GlossaryGenerator:
 
         """
         self.research_doc = research_doc
-        self.glossary_predictor = dspy.Predict("text -> glossary")
+        self.glossary_predictor = dspy.TypedPredictor(Text2GlossarySignature)
 
-    def generate_glossary(self) -> Any:
+    def normalize_term(self, term: str) -> str:
+        """Normalize a term by converting it to lowercase and removing common plural endings."""
+        term = term.lower().strip()
+        # Remove common plural endings
+        if term.endswith("ies"):
+            term = re.sub("ies$", "y", term)
+        elif term.endswith("es"):
+            term = re.sub("es$", "e", term)
+        elif term.endswith("s"):
+            term = term[:-1]
+        return term
+
+    def deduplicate_entries(self, glossary: list[TerminusTechnicus]) -> list[TerminusTechnicus]:
+        """Deduplicate the glossary entries by considering plurals and similar-sounding terms."""
+        normalized_terms = set()
+        deduplicated_glossary = []
+
+        for term in glossary:
+            normalized = self.normalize_term(term.term)
+            if normalized not in normalized_terms:
+                normalized_terms.add(normalized)
+                deduplicated_glossary.append(term)
+        return deduplicated_glossary
+
+    def format_nicely(self, glossary: list[TerminusTechnicus]) -> str:
+        """
+        Format the glossary nicely.
+
+        Args:
+            glossary (list[TerminusTechnicus]): The glossary to format.
+
+        Returns
+        -------
+            str: The nicely formatted glossary.
+
+        """
+        formatted_glossary = ""
+        for i, term in enumerate(glossary):
+            formatted_glossary += f"{i+1}. {term.term}: {term.definition}\n"
+        return formatted_glossary
+
+    def generate_glossary_from_doc(self) -> Any:
         """
         Generate the glossary based on the research document.
 
@@ -44,17 +103,40 @@ class GlossaryGenerator:
         """
         init_dspy()
         total_text = self.research_doc.paper
-        part_length = len(total_text) // 100
-        print("Total Text Length:", len(total_text))
-        print("Part Length:", part_length)
-        glossary = self.glossary_predictor(text=total_text[:part_length])
-        return glossary
+        parts = 100
+        part_length = len(total_text) // parts
+        print("Extracting glossary from the text...")
+        print(f"Total text length: {len(total_text)}")
+        print(f"Part length: {part_length}")
+        combined_glossary = []
+
+        for i in range(parts):
+            start_index = i * part_length
+            end_index = (
+                (i + 1) * part_length if i < (parts - 1) else len(total_text)
+            )  # Adjust the end index for the last part
+            part_text = total_text[start_index:end_index]
+            glossary_part = self.glossary_predictor(text=part_text)
+            combined_glossary.extend(glossary_part.glossary)
+
+        combined_glossary_deduplicate = self.deduplicate_entries(combined_glossary)
+        return self.format_nicely(combined_glossary_deduplicate)
 
 
-def main() -> None:
-    """Demonstrate the usage of the ResearchDoc class."""
-    document_directory = "/Users/magdalenalederbauer/projects/glossagen/data/"
+def generate_glossary(document_directory: str) -> Any:
+    """
+    Generate a glossary based on a research document.
+
+    Args:
+        document_directory (str): The directory where the research document is stored.
+
+    Returns
+    -------
+        str: The generated glossary.
+
+    """
     init_dspy()
+
     loader = ResearchDocLoader(document_directory)
     research_doc = loader.load()
     research_doc.extract_metadata()
@@ -67,9 +149,18 @@ def main() -> None:
     print("Paper Text:", research_doc.paper[:1000])
 
     glossary_generator = GlossaryGenerator(research_doc)
-    glossary = glossary_generator.generate_glossary()
+    glossary = glossary_generator.generate_glossary_from_doc()
+
     print("Generated Glossary:")
     print(glossary)
+
+    return glossary
+
+
+def main() -> None:
+    """Demonstrate the generation of a glossary from a research document."""
+    document_directory = "/Users/magdalenalederbauer/projects/glossagen/data/"
+    generate_glossary(document_directory)
 
 
 if __name__ == "__main__":

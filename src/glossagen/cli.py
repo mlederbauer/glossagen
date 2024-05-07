@@ -2,6 +2,8 @@
 
 import argparse
 
+from glossagen.pipelines import generate_glossary
+
 
 def hello_world(smiles: str) -> str:
     """Return a greeting message with the provided SMILES notation."""
@@ -10,15 +12,18 @@ def hello_world(smiles: str) -> str:
 
 def main() -> None:
     """CLI for GlossaGen."""
-    parser = argparse.ArgumentParser(description="Process some smiles.")
+    parser = argparse.ArgumentParser(description="Generate a glossary out of a research paper.")
     parser.add_argument(
-        "smiles",
+        "document_directory",
         type=str,
-        help="A text string representing a SMILES notation or any string.",
+        nargs="?",
+        default="/Users/magdalenalederbauer/projects/glossagen/data/",
+        help="The directory where the research document is stored.",
     )
 
     args = parser.parse_args()
-    print(hello_world(args.smiles))
+
+    generate_glossary(args.document_directory)
 
 
 if __name__ == "__main__":
