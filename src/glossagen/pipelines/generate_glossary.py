@@ -136,9 +136,10 @@ class GlossaryGenerator:
             combined_glossary.extend(glossary_part.glossary)
 
         combined_glossary_deduplicate = self.deduplicate_entries(combined_glossary)
-        combined_glossary_deduplicate_reranked = self.reranker(
-            termini_technici=combined_glossary_deduplicate
-        ).important_terms
+        # combined_glossary_deduplicate_reranked = self.reranker(
+        #     termini_technici=combined_glossary_deduplicate
+        # ).important_terms
+        combined_glossary_deduplicate_reranked = combined_glossary_deduplicate
 
         log_to_wandb(combined_glossary_deduplicate_reranked)
 
