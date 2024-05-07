@@ -1,6 +1,6 @@
 """Sphinx configuration."""
 
-# This file is execfile()d with the current directory set to its containing dir.
+# This file is execfile()d with the current directory set to its containing dir
 #
 # This file only contains a selection of the most common options. For a full
 # list see the documentation:
@@ -14,7 +14,7 @@ import shutil
 import sys
 from importlib.metadata import metadata
 
-# -- Path setup 
+# -- Path setup
 
 __location__ = os.path.dirname(__file__)
 
@@ -23,8 +23,8 @@ __location__ = os.path.dirname(__file__)
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.join(__location__, "../../src"))
 
-# -- Run sphinx-apidoc 
-# This hack is necessary since RTD does not issue `sphinx-apidoc` before running
+# -- Run sphinx-apidoc
+# Hack is necessary since RTD does not issue `sphinx-apidoc` before running
 # `sphinx-build -b html . _build/html`. See Issue:
 # https://github.com/readthedocs/readthedocs.org/issues/1139
 # DON'T FORGET: Check the box "Install your project inside a virtualenv
@@ -45,7 +45,9 @@ except FileNotFoundError:
 try:
     import sphinx
 
-    cmd_line = f"sphinx-apidoc --implicit-namespaces -f -o {output_dir} {module_dir}"
+    cmd_line = (
+        f"sphinx-apidoc --implicit-namespaces -f -o {output_dir} {module_dir}"
+    )
 
     args = cmd_line.split(" ")
     if tuple(sphinx.__version__.split(".")) >= ("1", "7"):
@@ -86,9 +88,7 @@ exclude_patterns = [
     ".ipynb_checkpoints",
 ]
 
-suppress_warnings = [
-    'myst.header'
-]
+suppress_warnings = ["myst.header"]
 
 # -- Options for HTML output
 
