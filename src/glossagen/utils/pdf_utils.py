@@ -77,7 +77,7 @@ class ResearchDoc(BaseModel):
         doi = "bar"
         self.metadata_dict = {"title": title, "doi": doi}
 
-    def trim_at_references(self):
+    def trim_at_references(self) -> None:
         """Trim the document text at the start of the references section."""
         # Regex to detect 'REFERENCES' and ensure it's followed by typical reference entries
         pattern = re.compile(
