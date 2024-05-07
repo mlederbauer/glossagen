@@ -1,7 +1,7 @@
 """Module for extracting and generating glossaries from research documents."""
 
 import re
-from typing import Any
+from typing import Any, Dict, Optional
 
 import dspy
 from pydantic import BaseModel, Field
@@ -128,7 +128,9 @@ class GlossaryGenerator:
 
 
 def log_to_wandb(
-    glossary: list[TerminusTechnicus], project_name: str = "GlossaGen", config: dict = None
+    glossary: list[TerminusTechnicus],
+    project_name: str = "GlossaGen",
+    config: Optional[Dict[Any, Any]] = None,
 ) -> None:
     """
     Initialize wandb and log the generated glossary as a wandb.Table.
@@ -143,7 +145,7 @@ def log_to_wandb(
 
     # Prepare data for wandb.Table
     table_data = [[term.term, term.definition] for term in glossary]
-    glossary_table = wandb.Table(columns=["Term", "Definition"], data=table_data)
+    glossary_table = wandb.Table(columns=["Term", "Definition"], data=table_data)  # type: ignore
 
     # Log the glossary table
     wandb.log({"Generated Glossary": glossary_table})
