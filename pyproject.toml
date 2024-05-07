@@ -54,6 +54,7 @@ path = "src/glossagen/__about__.py"
 
 [tool.ruff]
 show-fixes = true
+line-length = 79
 
 [tool.ruff.lint]
 select = [
