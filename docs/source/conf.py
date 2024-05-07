@@ -14,7 +14,7 @@ import shutil
 import sys
 from importlib.metadata import metadata
 
-# -- Path setup 
+# -- Path setup
 
 __location__ = os.path.dirname(__file__)
 
@@ -23,7 +23,7 @@ __location__ = os.path.dirname(__file__)
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.join(__location__, "../../src"))
 
-# -- Run sphinx-apidoc 
+# -- Run sphinx-apidoc
 # This hack is necessary since RTD does not issue `sphinx-apidoc` before running
 # `sphinx-build -b html . _build/html`. See Issue:
 # https://github.com/readthedocs/readthedocs.org/issues/1139
@@ -86,9 +86,7 @@ exclude_patterns = [
     ".ipynb_checkpoints",
 ]
 
-suppress_warnings = [
-    'myst.header'
-]
+suppress_warnings = ["myst.header"]
 
 # -- Options for HTML output
 
