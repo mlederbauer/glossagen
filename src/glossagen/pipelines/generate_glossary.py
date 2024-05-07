@@ -13,7 +13,7 @@ from glossagen.utils import ResearchDoc, ResearchDocLoader, init_dspy
 class TerminusTechnicus(BaseModel):
     """A terminus technicus, i.e. a techincal term in materials science and chemistry."""
 
-    term: str = Field(..., title="The technical term.")
+    term: str = Field(..., title="The technical term. Can also be an abbreviation.")
     definition: str = Field(..., title="The definition of the technical term.")
 
 
@@ -22,7 +22,7 @@ class Text2GlossarySignature(dspy.Signature):
 
     text: str = dspy.InputField(desc="The text to extract the termini technici from.")
     glossary: list[TerminusTechnicus] = dspy.OutputField(
-        desc="The list of termini technici extracted from the text."
+        desc="The list of termini technici extracted from the text. ONLY TAKE VERY INPORTANT TERMS."
     )
 
 
