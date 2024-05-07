@@ -16,8 +16,8 @@ creating a glossary out of scholarly materials and chemistry reviews
 
 Run `GlossaGen` to extract your first set of terms from a research paper about dentistry and zeolithes (interesting!):
 ```
-glossagen
-glossagen -d path/to/directory/containing/paper # as of now, the paper must be called paper.pdf
+glossagen # this runs the program with the default paper
+glossagen path/to/directory/containing/paper # as of now, the paper must be called paper.pdf
 ```
 
 ## 👩‍💻 Installation
