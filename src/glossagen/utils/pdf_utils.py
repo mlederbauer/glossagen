@@ -1,6 +1,7 @@
 """Base classes for document extraction."""
 
 import os
+import re
 from typing import Dict
 
 import dspy
@@ -48,6 +49,14 @@ class ResearchDoc(BaseModel):
         text = "".join(page.get_text() for page in doc)
         research_doc = cls(doc_src=paper_dir, fitz_paper=doc, paper=text)
         research_doc.extract_metadata()
+        print("--------------------------------------------------")
+        print(f"Lenght of paper: {len(research_doc.paper)}")
+        # print(research_doc.paper[:3000])
+        print("--------------------------------------------------")
+        research_doc.trim_at_references()
+        print(f"Lenght of paper: {len(research_doc.paper)}")
+        # print(research_doc.paper[:3000])
+        print("--------------------------------------------------")
         return research_doc
 
     def extract_metadata(self) -> None:
@@ -58,12 +67,27 @@ class ResearchDoc(BaseModel):
         DOI from the paper. The extracted metadata is stored in the
         `metadata_dict` attribute of the ResearchDoc instance.
         """
-        metadata_extractor = dspy.Predict(MetadataSignature)
-        metadata = metadata_extractor(publication_text=self.paper[:3000])
-        self.metadata_dict = {
-            "title": metadata.title.lstrip("Title: "),
-            "doi": metadata.doi,
-        }
+        # metadata_extractor = dspy.Predict(MetadataSignature)
+        # metadata = metadata_extractor(publication_text=self.paper[:3000])
+        # self.metadata_dict = {
+        #     "title": metadata.title.lstrip("Title: "),
+        #     "doi": metadata.doi,
+        # }
+        title = "foo"
+        doi = "bar"
+        self.metadata_dict = {"title": title, "doi": doi}
+
+    def trim_at_references(self) -> None:
+        """Trim the document text at the start of the references section."""
+        # Regex to detect 'REFERENCES' and ensure it's followed by typical reference entries
+        pattern = re.compile(
+            r"\bREFERENCES\b\s*" r"(?=\s*(?:\(\d+\)|\d+\.)\s+[A-Z][a-z]+.*?\d{4})",
+            re.IGNORECASE | re.DOTALL,
+        )
+        match = pattern.search(self.paper)
+        if match:
+            # If 'REFERENCES' is found, cut the text
+            self.paper = self.paper[: match.start()]
 
 
 class ResearchDocLoader:
@@ -106,7 +130,16 @@ class ResearchDocLoader:
 
 def main() -> None:
     """Demonstrate the usage of the ResearchDoc class."""
-    document_directory = "/Users/magdalenalederbauer/projects/glossagen/data/"
+    # document_directory = (
+    #     "/Users/magdalenalederbauer/projects/glossagen/papers/Chem. Rev. 2018, 118, 2718-2768"
+    # )
+    # document_directory = (
+    #     "/Users/magdalenalederbauer/projects/glossagen/papers/Chem. Rev. 2022, 122, 12207-12243"
+    # )
+    document_directory = (
+        "/Users/magdalenalederbauer/projects/glossagen/papers/Chem. Rev. 2024, 124, 2352-2418"
+    )
+
     init_dspy()
     loader = ResearchDocLoader(document_directory)
     research_doc = loader.load()

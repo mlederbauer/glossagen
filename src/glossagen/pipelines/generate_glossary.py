@@ -13,7 +13,7 @@ from glossagen.utils import ResearchDoc, ResearchDocLoader, init_dspy
 class TerminusTechnicus(BaseModel):
     """A terminus technicus, i.e. a techincal term in materials science and chemistry."""
 
-    term: str = Field(..., title="The technical term.")
+    term: str = Field(..., title="The technical term. Can also be an abbreviation.")
     definition: str = Field(..., title="The definition of the technical term.")
 
 
@@ -22,8 +22,22 @@ class Text2GlossarySignature(dspy.Signature):
 
     text: str = dspy.InputField(desc="The text to extract the termini technici from.")
     glossary: list[TerminusTechnicus] = dspy.OutputField(
+        desc="The list of termini technici extracted from the text. ONLY TAKE VERY INPORTANT TERMS."
+    )
+
+
+class KeepImportantTerms(dspy.Signature):
+    """Keep only the important terms from a list of termini technici."""
+
+    termini_technici: list[TerminusTechnicus] = dspy.InputField(
         desc="The list of termini technici extracted from the text."
     )
+    important_terms: list[TerminusTechnicus] = dspy.OutputField(
+        desc="""The list of important terms extracted from the termini technici.
+        NEEDS to be abbreviations or very important terms."""
+    )
+    # TODO: better reranking
+    # TODO: abbreviations?
 
 
 class GlossaryGenerator:
@@ -51,6 +65,7 @@ class GlossaryGenerator:
         """
         self.research_doc = research_doc
         self.glossary_predictor = dspy.TypedPredictor(Text2GlossarySignature)
+        self.reranker = dspy.TypedChainOfThought(KeepImportantTerms)
 
     def normalize_term(self, term: str) -> str:
         """Normalize a term by converting it to lowercase and removing common plural endings."""
@@ -121,10 +136,14 @@ class GlossaryGenerator:
             combined_glossary.extend(glossary_part.glossary)
 
         combined_glossary_deduplicate = self.deduplicate_entries(combined_glossary)
+        # combined_glossary_deduplicate_reranked = self.reranker(
+        #     termini_technici=combined_glossary_deduplicate
+        # ).important_terms
+        combined_glossary_deduplicate_reranked = combined_glossary_deduplicate
 
-        log_to_wandb(combined_glossary_deduplicate)
+        log_to_wandb(combined_glossary_deduplicate_reranked)
 
-        return self.format_nicely(combined_glossary_deduplicate)
+        return self.format_nicely(combined_glossary_deduplicate_reranked)
 
 
 def log_to_wandb(
