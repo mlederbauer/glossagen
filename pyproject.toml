@@ -11,7 +11,8 @@ description = "creating a glossary out of schoalrly materials and chemistry revi
 dependencies = [
     "dspy-ai==2.4.9",
     "python-dotenv==1.0.1",
-    "pymupdf==1.24.2"
+    "pymupdf==1.24.2",
+    "wandb"
 ]
 authors = [
     {name = "Magdalena Lederbauer", email = "mlederbauer@ethz.ch"}
@@ -110,6 +111,7 @@ module = [
     "fitz",
     "dspy",
     "dsp",
+    "wandb.*"
 ]
 ignore_missing_imports = true
 
