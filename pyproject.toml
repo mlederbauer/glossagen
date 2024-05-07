@@ -9,7 +9,9 @@ requires-python = ">=3.8"
 license = {file = "LICENSE"}
 description = "creating a glossary out of schoalrly materials and chemistry reviews"
 dependencies = [
-    # "rdkit",
+    "dspy-ai==2.4.9",
+    "python-dotenv==1.0.1",
+    "pymupdf==1.24.2"
 ]
 authors = [
     {name = "Magdalena Lederbauer", email = "mlederbauer@ethz.ch"}
@@ -48,6 +50,9 @@ doc = [
     "sphinx>=5",
     "sphinx-copybutton",
 ]
+
+[project.scripts]
+glossagen = "glossagen.cli:main"
 
 [tool.hatch.version]
 path = "src/glossagen/__about__.py"
