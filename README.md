@@ -29,12 +29,11 @@ conda create -n glossagen python=3.10
 conda activate glossagen
 ```
 
-If you need jupyter lab, install it 
-
+! IMPORTANT: Make sure you have a `.env` file in your project directory, where you add your `OPENAI_API_KEY`.
 ```
-(conda_env) $ pip install jupyterlab
+# content of the .env file
+OPENAI_API_KEY=sk-foo
 ```
-
 
 ## 🛠️ Development installation
 
