@@ -6,6 +6,7 @@ from typing import Any
 import dspy
 from pydantic import BaseModel, Field
 
+import wandb
 from glossagen.utils import ResearchDoc, ResearchDocLoader, init_dspy
 
 
@@ -120,10 +121,38 @@ class GlossaryGenerator:
             combined_glossary.extend(glossary_part.glossary)
 
         combined_glossary_deduplicate = self.deduplicate_entries(combined_glossary)
+
+        log_to_wandb(combined_glossary_deduplicate)
+
         return self.format_nicely(combined_glossary_deduplicate)
 
 
-def generate_glossary(document_directory: str) -> Any:
+def log_to_wandb(
+    glossary: list[TerminusTechnicus], project_name: str = "GlossaGen", config: dict = None
+) -> None:
+    """
+    Initialize wandb and log the generated glossary as a wandb.Table.
+
+    Args:
+        glossary (list[TerminusTechnicus]): The list of glossary terms to log.
+        project_name (str): The name of the wandb project.
+        config (dict): Configuration parameters for the wandb run.
+    """
+    # Initialize wandb
+    wandb.init(project=project_name, config=config)
+
+    # Prepare data for wandb.Table
+    table_data = [[term.term, term.definition] for term in glossary]
+    glossary_table = wandb.Table(columns=["Term", "Definition"], data=table_data)
+
+    # Log the glossary table
+    wandb.log({"Generated Glossary": glossary_table})
+
+    # Finish the wandb run
+    wandb.finish()
+
+
+def generate_glossary(document_directory: str, log_to_wandb_flag: bool = True) -> Any:
     """
     Generate a glossary based on a research document.
 
