@@ -1,4 +1,4 @@
-"""Module for extracting and generating glossaries from research documents."""
+"""Module for generating a glossary based on a research document."""
 
 import re
 from typing import Any, Dict, Optional
@@ -104,7 +104,7 @@ class GlossaryGenerator:
         """
         init_dspy()
         total_text = self.research_doc.paper
-        parts = 100
+        parts = 10
         part_length = len(total_text) // parts
         print("Extracting glossary from the text...")
         print(f"Total text length: {len(total_text)}")
@@ -117,6 +117,7 @@ class GlossaryGenerator:
                 (i + 1) * part_length if i < (parts - 1) else len(total_text)
             )  # Adjust the end index for the last part
             part_text = total_text[start_index:end_index]
+            print(part_text)
             glossary_part = self.glossary_predictor(text=part_text)
             combined_glossary.extend(glossary_part.glossary)
 

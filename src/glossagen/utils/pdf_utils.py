@@ -1,7 +1,7 @@
 """Base classes for document extraction."""
 
 import os
-from typing import Dict
+from typing import Dict, Optional
 
 import dspy
 import fitz  # PyMuPDF
@@ -22,7 +22,7 @@ class ResearchDoc(BaseModel):
     """A research paper."""
 
     doc_src: str
-    fitz_paper: fitz.Document
+    fitz_paper: Optional[fitz.Document] = None
     paper: str = ""
     metadata_dict: Dict[str, str] = {}
 
@@ -30,6 +30,22 @@ class ResearchDoc(BaseModel):
         """Pydantic configuration for the ResearchDoc class."""
 
         arbitrary_types_allowed = True
+
+    @classmethod
+    def from_text(cls, text: str, doc_src: str) -> "ResearchDoc":
+        """
+        Create a ResearchDoc instance from text.
+
+        Args:
+            text (str): The text of the research paper.
+            doc_src (str): The source of the document.
+
+        Returns
+        -------
+            ResearchDoc: The created ResearchDoc instance.
+        """
+        research_doc = cls(doc_src="Latex", fitz_paper=None, paper=text)
+        return research_doc
 
     @classmethod
     def from_dir(cls, paper_dir: str) -> "ResearchDoc":

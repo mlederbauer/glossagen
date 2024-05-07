@@ -19,7 +19,7 @@ give concise, structured, helpful answers whenever instructed."""
 def init_dspy(
     language_model_class: dsp.GPT3 = dspy.OpenAI,
     max_tokens: int = 3000,
-    model: str = "gpt-4-turbo",
+    model: str = "gpt-3.5-turbo",
 ) -> None:
     """
     Initialize the dspy library with the specified parameters.
