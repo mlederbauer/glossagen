@@ -4,7 +4,7 @@
 ![Coverage Status](https://raw.githubusercontent.com/mlederbauer/glossagen/main/coverage-badge.svg)
 
 <h1 align="center">
-glossagen
+GlossaGen
 </h1>
 
 <br>
@@ -14,8 +14,11 @@ creating a glossary out of scholarly materials and chemistry reviews
 
 ## 🔥 Usage
 
-> TODO show in a very small amount of space the **MOST** useful thing your package can do.
-> Make it as short as possible! You have an entire set of docs for later.
+Run `GlossaGen` to extract your first set of terms from a research paper about dentistry and zeolithes (interesting!):
+```
+glossagen
+glossagen -d path/to/directory/containing/paper # as of now, the paper must be called paper.pdf
+```
 
 ## 👩‍💻 Installation
 
