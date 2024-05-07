@@ -10,7 +10,7 @@ glossagen
 <br>
 
 
-creating a glossary out of schoalrly materials and chemistry reviews
+creating a glossary out of scholarly materials and chemistry reviews
 
 ## 🔥 Usage
 
