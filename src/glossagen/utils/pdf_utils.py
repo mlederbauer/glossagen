@@ -159,9 +159,7 @@ def main() -> None:
     # document_directory = (
     #     "/Users/magdalenalederbauer/projects/glossagen/papers/Chem. Rev. 2022, 122, 12207-12243"
     # )
-    document_directory = (
-        "/Users/magdalenalederbauer/projects/glossagen/papers/Chem. Rev. 2024, 124, 2352-2418"
-    )
+    document_directory = "./papers/Chem. Rev. 2024, 124, 2352-2418"
 
     init_dspy()
     loader = ResearchDocLoader(document_directory)

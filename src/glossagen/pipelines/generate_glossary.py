@@ -221,7 +221,7 @@ def generate_glossary(document_directory: str, log_to_wandb_flag: bool = True) -
 
 def main() -> None:
     """Demonstrate the generation of a glossary from a research document."""
-    document_directory = "/Users/magdalenalederbauer/projects/glossagen/data/"
+    document_directory = "./data/"
     generate_glossary(document_directory)
 
 
