@@ -46,7 +46,8 @@ def main(latex_file_path: str) -> None:
     research_doc = ResearchDoc.from_text(text=text, doc_src="LaTeX source")
     glossary_generator = GlossaryGenerator(research_doc)
     glossary = glossary_generator.generate_glossary_from_doc()
-    print(glossary)
+    # replace every \n with \\ and print
+    print(glossary.replace("\n", "\\\\"))
 
 
 if __name__ == "__main__":
