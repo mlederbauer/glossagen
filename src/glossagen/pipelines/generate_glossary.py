@@ -22,7 +22,8 @@ class Text2GlossarySignature(dspy.Signature):
 
     text: str = dspy.InputField(desc="The text to extract the termini technici from.")
     glossary: list[TerminusTechnicus] = dspy.OutputField(
-        desc="The list of termini technici extracted from the text. ONLY TAKE VERY INPORTANT TERMS."
+        desc="""The list of termini technici extracted from the text.
+        ONLY TAKE VERY INPORTANT TERMS, no general terms like Chemistry."""
     )
 
 
@@ -132,6 +133,7 @@ class GlossaryGenerator:
                 (i + 1) * part_length if i < (parts - 1) else len(total_text)
             )  # Adjust the end index for the last part
             part_text = total_text[start_index:end_index]
+            print(part_text)
             glossary_part = self.glossary_predictor(text=part_text)
             combined_glossary.extend(glossary_part.glossary)
 
@@ -203,6 +205,9 @@ def generate_glossary(document_directory: str, log_to_wandb_flag: bool = True) -
 
     print("Generated Glossary:")
     print(glossary)
+
+    with open("glossary.txt", "w") as file:
+        file.write(glossary)
 
     return glossary
 

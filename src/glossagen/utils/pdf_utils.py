@@ -89,6 +89,13 @@ class ResearchDoc(BaseModel):
             # If 'REFERENCES' is found, cut the text
             self.paper = self.paper[: match.start()]
 
+        # if no match is found, cut after last occ of 'Acknowledgements' or 'Data Availability'
+        else:
+            pattern = re.compile(r"\bAcknowledgements\b|\bData Availability\b", re.IGNORECASE)
+            match = pattern.search(self.paper)
+            if match:
+                self.paper = self.paper[: match.start()]
+
 
 class ResearchDocLoader:
     """A class for loading research documents from a directory."""
