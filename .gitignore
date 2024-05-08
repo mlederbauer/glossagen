@@ -5,6 +5,7 @@ wandb/
 pythontex*
 papers/
 scratch/
+*latex*
 
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
