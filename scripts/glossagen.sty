@@ -1,0 +1,15 @@
+% glossagen.sty - A package to automatically generate a glossary
+\ProvidesPackage{glossagen}
+
+% Require PythonTeX package
+\RequirePackage{pythontex}
+
+% Define the glossagen command
+\newcommand{\glossagen}{
+\section*{Glossary}
+\begin{pycode}
+from glossagen.pipelines.latex_glossary import main
+glossary = main('\jobname.tex')
+print(glossary)
+\end{pycode}    
+}
