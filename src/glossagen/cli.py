@@ -17,7 +17,7 @@ def main() -> None:
         "document_directory",
         type=str,
         nargs="?",
-        default="/Users/magdalenalederbauer/projects/glossagen/data/",
+        default="./data",
         help="The directory where the research document is stored.",
     )
 

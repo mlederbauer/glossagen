@@ -111,7 +111,8 @@ module = [
     "fitz",
     "dspy",
     "dsp",
-    "wandb.*"
+    "wandb.*",
+    "wandb"
 ]
 ignore_missing_imports = true
 

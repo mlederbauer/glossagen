@@ -4,6 +4,7 @@ import re
 from typing import Any, Dict, Optional
 
 import dspy
+import pandas as pd
 from pydantic import BaseModel, Field
 
 import wandb
@@ -55,17 +56,19 @@ class GlossaryGenerator:
 
     """
 
-    def __init__(self, research_doc: ResearchDoc):
+    def __init__(self, research_doc: ResearchDoc, chunk_size: int = 20000):
         """
         Initialize a GlossaryGenerator object.
 
         Args:
             research_doc (ResearchDoc): The research document to generate the glossary from.
+            chunk_size (int): The size of the chunks to split the research document into.
 
         """
         self.research_doc = research_doc
         self.glossary_predictor = dspy.TypedPredictor(Text2GlossarySignature)
         self.reranker = dspy.TypedChainOfThought(KeepImportantTerms)
+        self.chunk_size = chunk_size
 
     def normalize_term(self, term: str) -> str:
         """Normalize a term by converting it to lowercase and removing common plural endings."""
@@ -119,20 +122,21 @@ class GlossaryGenerator:
         """
         init_dspy()
         total_text = self.research_doc.paper
-        parts = 10
-        part_length = len(total_text) // parts
+        total_length = len(total_text)
+        parts = (
+            total_length + self.chunk_size - 1
+        ) // self.chunk_size  # Compute the number of chunks needed
+
         print("Extracting glossary from the text...")
-        print(f"Total text length: {len(total_text)}")
-        print(f"Part length: {part_length}")
+        print(f"Total text length: {total_length}")
+        print(f"Chunk size: {self.chunk_size}")
         combined_glossary = []
 
         for i in range(parts):
-            start_index = i * part_length
-            end_index = (
-                (i + 1) * part_length if i < (parts - 1) else len(total_text)
-            )  # Adjust the end index for the last part
+            start_index = i * self.chunk_size
+            end_index = min((i + 1) * self.chunk_size, total_length)
             part_text = total_text[start_index:end_index]
-            print(part_text)
+            print(part_text[:100] + "...")  # Print the first 100 characters of each part
             glossary_part = self.glossary_predictor(text=part_text)
             combined_glossary.extend(glossary_part.glossary)
 
@@ -142,13 +146,21 @@ class GlossaryGenerator:
         # ).important_terms
         combined_glossary_deduplicate_reranked = combined_glossary_deduplicate
 
-        log_to_wandb(combined_glossary_deduplicate_reranked)
+        log_to_wandb(combined_glossary_deduplicate_reranked, self.chunk_size)
 
-        return self.format_nicely(combined_glossary_deduplicate_reranked)
+        glossary_df = pd.DataFrame(
+            [
+                {"Term": term.term, "Definition": term.definition}
+                for term in combined_glossary_deduplicate_reranked
+            ]
+        )
+
+        return glossary_df
 
 
 def log_to_wandb(
     glossary: list[TerminusTechnicus],
+    chunk_size: int,
     project_name: str = "GlossaGen",
     config: Optional[Dict[Any, Any]] = None,
 ) -> None:
@@ -157,6 +169,7 @@ def log_to_wandb(
 
     Args:
         glossary (list[TerminusTechnicus]): The list of glossary terms to log.
+        chunk_size (int): The size of the chunks the research document was split into.
         project_name (str): The name of the wandb project.
         config (dict): Configuration parameters for the wandb run.
     """
@@ -169,6 +182,8 @@ def log_to_wandb(
 
     # Log the glossary table
     wandb.log({"Generated Glossary": glossary_table})
+    wandb.log({"Glossary Length": len(glossary)})
+    wandb.log({"Chunk Size": chunk_size})
 
     # Finish the wandb run
     wandb.finish()
@@ -210,7 +225,7 @@ def generate_glossary(document_directory: str, log_to_wandb_flag: bool = True) -
 
 def main() -> None:
     """Demonstrate the generation of a glossary from a research document."""
-    document_directory = "/Users/magdalenalederbauer/projects/glossagen/data/"
+    document_directory = "./data/"
     generate_glossary(document_directory)
 
 
