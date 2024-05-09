@@ -25,17 +25,15 @@ glossagen path/to/directory/containing/paper # the paper must be called paper.pd
 
 ## 👩‍💻 Installation
 
-Create a new environment, you may also give the environment a different name. 
+Create a new environment and install the package: 
 
 ```
-conda create -n glossagen python=3.10 
-```
-
-```
+conda create -n glossagen python=3.10
 conda activate glossagen
+pip install -e .
 ```
 
-! IMPORTANT: Make sure you have a `.env` file in your project directory, where you add your `OPENAI_API_KEY`.
+**IMPORTANT**: Make sure you have a `.env` file in your project directory with an `OPENAI_API_KEY`.
 ```
 # content of the .env file
 OPENAI_API_KEY=sk-foo
