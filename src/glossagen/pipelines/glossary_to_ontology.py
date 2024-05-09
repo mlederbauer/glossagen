@@ -1,22 +1,14 @@
-import re
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 import dspy
 from pydantic import BaseModel, Field
 
-import wandb
-from glossagen.utils import ResearchDoc, ResearchDocLoader, init_dspy
+from glossagen.utils import init_dspy
 
 class Glossary(BaseModel):
     """A research paper."""
 
     glossary_text: str
-
-    # class Config:
-    #     """Pydantic configuration for the ResearchDoc class."""
-
-    #     arbitrary_types_allowed = True
-    #     orm_mode=True
 
     @classmethod
     def from_dict(cls, glossary_dict: Dict[str,str]) -> "Glossary":
