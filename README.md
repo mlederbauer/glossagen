@@ -11,8 +11,9 @@ GlossaGen
 
 <br>
 
-
+<p align="center">
 creating a glossary out of scholarly materials and chemistry reviews
+</p>
 
 ## 🔥 Usage
 
