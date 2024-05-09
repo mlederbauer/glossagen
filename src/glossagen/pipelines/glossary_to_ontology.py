@@ -31,7 +31,7 @@ class Glossary(BaseModel):
 class OntologyEntityLabels(BaseModel):
     """An ontology label, i.e. an entity label in materials science and chemistry."""
 
-    label: str = Field(..., title="A string label describing a entity class.")
+    label: str = Field(..., title="A string 'label: description'  describing a entity class.")
 
 
 class OntologyRelation(BaseModel):
@@ -94,15 +94,19 @@ class OntologyGenerator:
 
         """
         init_dspy()
-        labels = self.labels_predictor(input_text=self.glossary_text)
-        relations = self.relations_predictor(input_text=self.glossary_text)
+        predicted_labels = self.labels_predictor(input_text=self.glossary_text)
+        predicted_relations = self.relations_predictor(input_text=self.glossary_text)
 
+        label_dict = {label.label.split(':')[0].strip():label.label.split(':')[1].strip() for label in predicted_labels['labels']}
+        relations = [relation.relation for relation in predicted_relations['relations']]
         if  verbose:
-            print(labels)
+            print(label_dict)
 
             print(relations)
 
-        return labels, relations
+        return label_dict, relations
+    
+
 
 if __name__ == '__main__':
 
@@ -128,6 +132,8 @@ if __name__ == '__main__':
 
     ontogen = OntologyGenerator(Glossary.from_dict(glossary_dict=example_glossary))
 
-    ontogen.generate_ontology_from_glossary(verbose=True)
+    predicted_labels, predicted_relations = ontogen.generate_ontology_from_glossary(verbose=True)
+
+    
 
 
