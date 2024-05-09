@@ -15,6 +15,10 @@ GlossaGen
 creating a glossary out of scholarly materials and chemistry reviews
 </p>
 
+This project is part of the 2024 LLM Hackathon for Materials and Chemistry. Find the public submission of our project – including a product demo – [here](https://twitter.com/pschwllr). Thank you for leaving a ❤️, comment, repost or star!
+
+Curious about example outputs of GlossaGen? Check out an intermediate Weights&Biases report [here](https://api.wandb.ai/links/mlederbauer/udrsalv6).
+
 ## 🔥 Usage
 
 Run `GlossaGen` to extract a glossary table from the command line:
@@ -38,18 +42,12 @@ pip install -e .
 # content of the .env file
 OPENAI_API_KEY=sk-foo
 
-# if you plan to generate knowledge graphs as well, provide the Neo4J and Groq Credentials as well
+# if you plan to generate knowledge graphs, provide Neo4J and Groq Credentials
 NEO4J_URI=neo4j+s://foo
 NEO4J_USERNAME=neo4j
 NEO4J_PASSWORD=foo
 GROQ_API_KEY=gsk_foo
 ```
-
-## 🎬 Demo
-
-This project is part of the 2024 LLM Hackathon for Materials and Chemistry.
-Find the public submission of our project – including a product demo – here:
-(ADD TWITTER LINK)
 
 ## 🛠️ Development installation
 
