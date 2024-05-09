@@ -3,7 +3,7 @@
 import base64
 from typing import Iterable
 
-import gradio as gr
+import gradio as gr  # type: ignore[attr-defined]
 from glossagen.pipelines import GlossaryGenerator
 from glossagen.utils import ResearchDocLoader
 from gradio.themes.base import Base

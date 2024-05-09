@@ -14,7 +14,8 @@ dependencies = [
     "pymupdf==1.24.2",
     "wandb",
     "gradio==4.29.0",
-    "textract==1.6.5"
+    "textract==1.6.5",
+    "pyperclip"
 ]
 authors = [
     {name = "Magdalena Lederbauer", email = "mlederbauer@ethz.ch"}
@@ -110,6 +111,18 @@ disallow_untyped_defs = true
 disable_error_code = ["import-untyped"]
 
 [[tool.mypy.overrides]]
+module = "pyperclip"
+disallow_untyped_defs = true
+disable_error_code = ["import-untyped"]
+
+[[tool.mypy.overrides]]
+module = ["gradio.*",
+        "gradio"]
+ignore_missing_imports = true
+disable_error_code = ["attr-defined", "import-untyped"]
+
+
+[[tool.mypy.overrides]]
 module = [
     "fitz",
     "dspy",
@@ -120,6 +133,7 @@ module = [
     "gradio"
 ]
 ignore_missing_imports = true
+disable_error_code = ["attr-defined"]
 
 
 # Ignore certain missing imports
