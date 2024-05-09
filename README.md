@@ -1,4 +1,4 @@
-![Project Logo](assets/banner.png)
+![Project Logo](assets/glossagen-logo.png)
 
 [![Code style: ruff-format](https://img.shields.io/badge/code%20style-ruff_format-6340ac.svg)](https://github.com/astral-sh/ruff)
 ![Coverage Status](https://raw.githubusercontent.com/mlederbauer/glossagen/main/coverage-badge.svg)
@@ -14,10 +14,10 @@ creating a glossary out of scholarly materials and chemistry reviews
 
 ## 🔥 Usage
 
-Run `GlossaGen` to extract your first set of terms from a research paper about dentistry and zeolithes (interesting!):
+Run `GlossaGen` to extract a glossary table from the command line:
 ```
-glossagen # this runs the program with the default paper
-glossagen path/to/directory/containing/paper # as of now, the paper must be called paper.pdf
+glossagen # runs the program with the default paper
+glossagen path/to/directory/containing/paper # the paper must be called paper.pdf
 ```
 
 ## 👩‍💻 Installation
@@ -36,7 +36,19 @@ conda activate glossagen
 ```
 # content of the .env file
 OPENAI_API_KEY=sk-foo
+
+# if you plan to generate knowledge graphs as well, provide the Neo4J and Groq Credentials as well
+NEO4J_URI=neo4j+s://foo
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=foo
+GROQ_API_KEY=gsk_foo
 ```
+
+## Demo
+
+This project is part of the 2024 LLM Hackathon for Materials and Chemistry.
+Find the public submission of our project – including a product demo – here:
+(ADD TWITTER LINK)
 
 ## 🛠️ Development installation
 
@@ -44,13 +56,6 @@ To install, run
 
 ```
 (conda_env) $ pip install -e ".[test,doc]"
-```
-
-To run style checks:
-
-```
-(conda_env) $ pip install pre-commit
-(conda_env) $ pre-commit run -a
 ```
 
 ### Run style checks, coverage, and tests
