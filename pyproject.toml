@@ -113,7 +113,8 @@ module = [
     "fitz",
     "dspy",
     "dsp",
-    "wandb.*"
+    "wandb.*",
+    "gradio.*"
 ]
 ignore_missing_imports = true
 
