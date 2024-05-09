@@ -26,9 +26,7 @@ glossagen path/to/directory/containing/paper # the paper must be called paper.pd
 
 ## 🎬 Demo
 
-This project is part of the 2024 LLM Hackathon for Materials and Chemistry.
-Find the public submission of our project – including a product demo – here:
-(ADD TWITTER LINK)
+This project is part of the 2024 LLM Hackathon for Materials and Chemistry. Find the public submission of our project – including a product demo – [https://twitter.com/pschwllr](here). Thanks for leaving a ❤️, comment, repost or star!
 
 Curious about example outputs of GlossaGen? Check out an intermediate Weights&Biases report [https://api.wandb.ai/links/mlederbauer/udrsalv6](here).
 
