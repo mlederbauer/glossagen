@@ -12,7 +12,9 @@ dependencies = [
     "dspy-ai==2.4.9",
     "python-dotenv==1.0.1",
     "pymupdf==1.24.2",
-    "wandb"
+    "wandb",
+    "gradio==4.29.0",
+    "textract==1.6.5"
 ]
 authors = [
     {name = "Magdalena Lederbauer", email = "mlederbauer@ethz.ch"}
