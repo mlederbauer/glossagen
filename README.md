@@ -12,10 +12,10 @@ GlossaGen
 <br>
 
 <p align="center">
-creating a glossary out of scholarly materials and chemistry reviews
+creating a glossary and knowledge graph out of scholarly materials and chemistry reviews – instantly
 </p>
 
-This project is part of the 2024 LLM Hackathon for Materials and Chemistry. Find the public submission of our project – including a product demo – [here](https://twitter.com/pschwllr). Thank you for leaving a ❤️, comment, repost or star!
+This project is part of the 2024 LLM Hackathon for Materials and Chemistry. Find the public submission of our project – including a product demo – [here]([https://twitter.com/pschwllr](https://x.com/maglederb/status/1788682695897240063)). Thank you for leaving a ❤️, comment, repost or star!
 
 Curious about example outputs of GlossaGen? Check out an intermediate Weights&Biases report [here](https://api.wandb.ai/links/mlederbauer/udrsalv6).
 
