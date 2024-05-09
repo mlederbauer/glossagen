@@ -155,7 +155,7 @@ class GlossaryGenerator:
             ]
         )
 
-        return glossary_df.to_latex(index=False)
+        return glossary_df
 
 
 def log_to_wandb(
