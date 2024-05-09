@@ -15,6 +15,9 @@ GlossaGen
 creating a glossary out of scholarly materials and chemistry reviews
 </p>
 
+This project is part of the 2024 LLM Hackathon for Materials and Chemistry. Find the public submission of our project – including a product demo – [here](https://twitter.com/pschwllr). Thank you for leaving a ❤️, comment, repost or star!
+
+Curious about example outputs of GlossaGen? Check out an intermediate Weights&Biases report [here](https://api.wandb.ai/links/mlederbauer/udrsalv6).
 
 ## 🔥 Usage
 
@@ -23,12 +26,6 @@ Run `GlossaGen` to extract a glossary table from the command line:
 glossagen # runs the program with the default paper
 glossagen path/to/directory/containing/paper # the paper must be called paper.pdf
 ```
-
-## 🎬 Demo
-
-This project is part of the 2024 LLM Hackathon for Materials and Chemistry. Find the public submission of our project – including a product demo – [here](https://twitter.com/pschwllr). Thanks for leaving a ❤️, comment, repost or star!
-
-Curious about example outputs of GlossaGen? Check out an intermediate Weights&Biases report [here](https://api.wandb.ai/links/mlederbauer/udrsalv6).
 
 ## 👩‍💻 Installation
 
