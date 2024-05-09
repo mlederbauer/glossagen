@@ -4,6 +4,7 @@ import re
 from typing import Any, Dict, Optional
 
 import dspy
+import pandas as pd
 from pydantic import BaseModel, Field
 
 import wandb
@@ -147,7 +148,14 @@ class GlossaryGenerator:
 
         log_to_wandb(combined_glossary_deduplicate_reranked, self.chunk_size)
 
-        return self.format_nicely(combined_glossary_deduplicate_reranked)
+        glossary_df = pd.DataFrame(
+            [
+                {"Term": term.term, "Definition": term.definition}
+                for term in combined_glossary_deduplicate_reranked
+            ]
+        )
+
+        return glossary_df.to_latex(index=False)
 
 
 def log_to_wandb(
