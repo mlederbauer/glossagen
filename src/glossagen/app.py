@@ -1,6 +1,7 @@
 """App to generate a glossary from a research paper PDF."""
 
 import base64
+from typing import Any
 
 import gradio as gr
 from glossagen.pipelines import (
@@ -9,7 +10,7 @@ from glossagen.pipelines import (
 from glossagen.utils import ResearchDocLoader
 
 
-def image_to_data_uri(filepath):
+def image_to_data_uri(filepath: str) -> str:
     """Convert an image file to a data URI."""
     with open(filepath, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
@@ -23,7 +24,7 @@ logo_html = (
 )
 
 
-def process_pdf(file_path):
+def process_pdf(file_path: str) -> tuple[Any, Any]:
     """Process the uploaded PDF file."""
     # Load the PDF and generate the glossary
     # delete the last paper.pdf from the path
@@ -33,7 +34,9 @@ def process_pdf(file_path):
     research_doc.extract_metadata()  # Optional, if you need metadata displayed or logged
 
     glossary_generator = GlossaryGenerator(research_doc)
-    glossary_text = glossary_generator.generate_glossary_from_doc()
+    glossary_text = glossary_generator.generate_glossary_from_doc()[
+        ["Term", "Definition"]
+    ].to_html()
 
     with open(f"{file_path}/paper.pdf", "rb") as file:
         pdf_data = file.read()

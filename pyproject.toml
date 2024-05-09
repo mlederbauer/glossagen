@@ -115,7 +115,8 @@ module = [
     "dsp",
     "wandb.*",
     "wandb",
-    "gradio.*"
+    "gradio.*",
+    "gradio"
 ]
 ignore_missing_imports = true
 
