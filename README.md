@@ -1,4 +1,6 @@
-<img src="assets/glossagen-logo.png" width="100">
+<p align="center">
+  <img src="assets/glossagen-logo.png" width="200">
+</p>
 
 [![Code style: ruff-format](https://img.shields.io/badge/code%20style-ruff_format-6340ac.svg)](https://github.com/astral-sh/ruff)
 ![Coverage Status](https://raw.githubusercontent.com/mlederbauer/glossagen/main/coverage-badge.svg)
