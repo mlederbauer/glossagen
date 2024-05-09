@@ -31,7 +31,7 @@ class Glossary(BaseModel):
 class OntologyEntityLabels(BaseModel):
     """An ontology label, i.e. an entity label in materials science and chemistry."""
 
-    entity: str = Field(..., title="A string label describing a entity class.")
+    label: str = Field(..., title="A string label describing a entity class.")
 
 
 class OntologyRelation(BaseModel):
@@ -39,11 +39,11 @@ class OntologyRelation(BaseModel):
 
     relation: str = Field(..., title="A relation type of the ontology.")
 
-class Glossary2Entities(dspy.Signature):
-    """Generating a list of entities labels (general overarching classes, e.g. Material, Process, Property, ...) from glossary term and description pairs."""
+class Glossary2Labels(dspy.Signature):
+    """Generating a list of entities labels (general overarching classes, e.g. Material, Process, Property, ..., Other) from glossary term and description pairs."""
 
     input_text: str = dspy.InputField(desc="Glossary term and description pairs, one by line.")
-    entities: list[OntologyEntityLabels] = dspy.OutputField(
+    labels: list[OntologyEntityLabels] = dspy.OutputField(
         desc="List of general labels categorizing the terms."
     )
 
@@ -81,10 +81,10 @@ class OntologyGenerator:
         """
         self.glossary_text = glossary_text.glossary_text
         self.relations_predictor = dspy.TypedPredictor(Glossary2Relations)
-        self.entities_predictor = dspy.TypedPredictor(Glossary2Entities)
+        self.labels_predictor = dspy.TypedPredictor(Glossary2Labels)
 
 
-    def generate_ontology_from_glossary(self) -> Any:
+    def generate_ontology_from_glossary(self, verbose=False) -> Any:
         """
         Generate the glossary based on the research document.
 
@@ -94,14 +94,15 @@ class OntologyGenerator:
 
         """
         init_dspy()
-        entities = self.entities_predictor(input_text=self.glossary_text)
+        labels = self.labels_predictor(input_text=self.glossary_text)
         relations = self.relations_predictor(input_text=self.glossary_text)
 
-        print(entities)
+        if  verbose:
+            print(labels)
 
-        print(relations)
+            print(relations)
 
-        return entities
+        return labels, relations
 
 if __name__ == '__main__':
 
@@ -127,6 +128,6 @@ if __name__ == '__main__':
 
     ontogen = OntologyGenerator(Glossary.from_dict(glossary_dict=example_glossary))
 
-    ontogen.generate_ontology_from_glossary()
+    ontogen.generate_ontology_from_glossary(verbose=True)
 
 
