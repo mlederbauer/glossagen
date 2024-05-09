@@ -30,7 +30,7 @@ This project is part of the 2024 LLM Hackathon for Materials and Chemistry.
 Find the public submission of our project – including a product demo – here:
 (ADD TWITTER LINK)
 
-Curious about example outputs of GlossaGen? Check out an intermediate Weights&Biases report (here)[https://api.wandb.ai/links/mlederbauer/udrsalv6].
+Curious about example outputs of GlossaGen? Check out an intermediate Weights&Biases report [https://api.wandb.ai/links/mlederbauer/udrsalv6](here).
 
 ## 👩‍💻 Installation
 
