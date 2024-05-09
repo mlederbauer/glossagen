@@ -47,7 +47,7 @@ NEO4J_PASSWORD=foo
 GROQ_API_KEY=gsk_foo
 ```
 
-## Demo
+## 🎬 Demo
 
 This project is part of the 2024 LLM Hackathon for Materials and Chemistry.
 Find the public submission of our project – including a product demo – here:
