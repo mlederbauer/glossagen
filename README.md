@@ -15,6 +15,7 @@ GlossaGen
 creating a glossary out of scholarly materials and chemistry reviews
 </p>
 
+
 ## 🔥 Usage
 
 Run `GlossaGen` to extract a glossary table from the command line:
@@ -22,6 +23,14 @@ Run `GlossaGen` to extract a glossary table from the command line:
 glossagen # runs the program with the default paper
 glossagen path/to/directory/containing/paper # the paper must be called paper.pdf
 ```
+
+## 🎬 Demo
+
+This project is part of the 2024 LLM Hackathon for Materials and Chemistry.
+Find the public submission of our project – including a product demo – here:
+(ADD TWITTER LINK)
+
+Curious about example outputs of GlossaGen? Check out an intermediate Weights&Biases report (here)[https://api.wandb.ai/links/mlederbauer/udrsalv6].
 
 ## 👩‍💻 Installation
 
@@ -44,12 +53,6 @@ NEO4J_USERNAME=neo4j
 NEO4J_PASSWORD=foo
 GROQ_API_KEY=gsk_foo
 ```
-
-## 🎬 Demo
-
-This project is part of the 2024 LLM Hackathon for Materials and Chemistry.
-Find the public submission of our project – including a product demo – here:
-(ADD TWITTER LINK)
 
 ## 🛠️ Development installation
 
