@@ -18,8 +18,8 @@ def image_to_data_uri(filepath):
 
 image_data_uri = image_to_data_uri("assets/glossagen-logo.png")
 logo_html = (
-    f"<img src='{image_data_uri}' alt='GlossaGen Logo' style='max-width:10%;",
-    " height:auto; display:block; margin-left:auto; margin-right:auto;'/>",
+    f"<img src='{image_data_uri}' alt='GlossaGen Logo' style='max-width:10%;"
+    + " height:auto; display:block; margin-left:auto; margin-right:auto;'/>"
 )
 
 
