@@ -56,14 +56,14 @@ Find the public submission of our project – including a product demo – here:
 To install, run
 
 ```
-(conda_env) $ pip install -e ".[test,doc]"
+(glossagen) $ pip install -e ".[test,doc]"
 ```
 
 ### Run style checks, coverage, and tests
 
 ```
-(conda_env) $ pip install tox
-(conda_env) $ tox
+(glossagen) $ pip install tox
+(glossagen) $ tox
 ```
 
 ### Generate coverage badge
@@ -71,8 +71,8 @@ To install, run
 Works after running `tox`
 
 ```
-(conda_env) $ pip install "genbadge[coverage]"
-(conda_env) $ genbadge coverage -i coverage.xml
+(glossagen) $ pip install "genbadge[coverage]"
+(glossagen) $ genbadge coverage -i coverage.xml
 ```
 
 
