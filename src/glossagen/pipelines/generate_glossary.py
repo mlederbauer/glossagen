@@ -221,9 +221,6 @@ def generate_glossary(document_directory: str, log_to_wandb_flag: bool = True) -
     print("Generated Glossary:")
     print(glossary)
 
-    with open("glossary.txt", "w") as file:
-        file.write(glossary)
-
     return glossary
 
 
