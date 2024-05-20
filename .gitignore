@@ -251,4 +251,4 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks,windows,macos
 
-docs/docs_out
+# docs/docs_out

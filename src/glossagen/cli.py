@@ -5,9 +5,9 @@ import argparse
 from glossagen.pipelines import generate_glossary
 
 
-def hello_world(smiles: str) -> str:
-    """Return a greeting message with the provided SMILES notation."""
-    return f"Hello {smiles}"
+def hello_world(custom_msg: str) -> str:
+    """Return a greeting message with the provided custom message."""
+    return f"Hello {custom_msg}"
 
 
 def main() -> None:
