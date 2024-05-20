@@ -1,1 +1,0 @@
-from .generate_glossary import generate_glossary
