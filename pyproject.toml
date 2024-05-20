@@ -12,7 +12,8 @@ dependencies = [
     "dspy-ai==2.4.9",
     "python-dotenv==1.0.1",
     "pymupdf==1.24.2",
-    "wandb"
+    "wandb",
+    "graph_maker @ git+https://github.com/pschwllr/graph_maker.git@main"
 ]
 authors = [
     {name = "Magdalena Lederbauer", email = "mlederbauer@ethz.ch"}
