@@ -59,6 +59,9 @@ glossagen = "glossagen.cli:main"
 [tool.hatch.version]
 path = "src/glossagen/__about__.py"
 
+[tool.hatch.metadata]
+allow-direct-references=true
+
 [tool.ruff]
 show-fixes = true
 line-length = 100
