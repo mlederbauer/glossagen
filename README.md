@@ -1,4 +1,6 @@
-![Project Logo](assets/banner.png)
+<p align="center">
+  <img src="assets/glossagen-logo.png" width="200">
+</p>
 
 [![Code style: ruff-format](https://img.shields.io/badge/code%20style-ruff_format-6340ac.svg)](https://github.com/astral-sh/ruff)
 ![Coverage Status](https://raw.githubusercontent.com/mlederbauer/glossagen/main/coverage-badge.svg)
@@ -9,33 +11,42 @@ GlossaGen
 
 <br>
 
+<p align="center">
+creating a glossary and knowledge graph out of scholarly materials and chemistry reviews – instantly
+</p>
 
-creating a glossary out of scholarly materials and chemistry reviews
+This project is part of the 2024 LLM Hackathon for Materials and Chemistry. Find the public submission of our project – including a product demo – [here](https://x.com/maglederb/status/1788682695897240063). Thank you for leaving a ❤️, comment, repost or star!
+
+Curious about example outputs of GlossaGen? Check out an intermediate Weights&Biases report [here](https://api.wandb.ai/links/mlederbauer/udrsalv6).
 
 ## 🔥 Usage
 
-Run `GlossaGen` to extract your first set of terms from a research paper about dentistry and zeolithes (interesting!):
+Run `GlossaGen` to extract a glossary table from the command line:
 ```
-glossagen # this runs the program with the default paper
-glossagen path/to/directory/containing/paper # as of now, the paper must be called paper.pdf
+glossagen # runs the program with the default paper
+glossagen path/to/directory/containing/paper # the paper must be called paper.pdf
 ```
 
 ## 👩‍💻 Installation
 
-Create a new environment, you may also give the environment a different name. 
+Create a new environment and install the package: 
 
 ```
-conda create -n glossagen python=3.10 
-```
-
-```
+conda create -n glossagen python=3.10
 conda activate glossagen
+pip install -e .
 ```
 
-! IMPORTANT: Make sure you have a `.env` file in your project directory, where you add your `OPENAI_API_KEY`.
+**IMPORTANT**: Make sure you have a `.env` file in your project directory with an `OPENAI_API_KEY`.
 ```
 # content of the .env file
 OPENAI_API_KEY=sk-foo
+
+# if you plan to generate knowledge graphs, provide Neo4J and Groq Credentials
+NEO4J_URI=neo4j+s://foo
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=foo
+GROQ_API_KEY=gsk_foo
 ```
 
 ## 🛠️ Development installation
@@ -43,21 +54,14 @@ OPENAI_API_KEY=sk-foo
 To install, run
 
 ```
-(conda_env) $ pip install -e ".[test,doc]"
-```
-
-To run style checks:
-
-```
-(conda_env) $ pip install pre-commit
-(conda_env) $ pre-commit run -a
+(glossagen) $ pip install -e ".[test,doc]"
 ```
 
 ### Run style checks, coverage, and tests
 
 ```
-(conda_env) $ pip install tox
-(conda_env) $ tox
+(glossagen) $ pip install tox
+(glossagen) $ tox
 ```
 
 ### Generate coverage badge
@@ -65,8 +69,8 @@ To run style checks:
 Works after running `tox`
 
 ```
-(conda_env) $ pip install "genbadge[coverage]"
-(conda_env) $ genbadge coverage -i coverage.xml
+(glossagen) $ pip install "genbadge[coverage]"
+(glossagen) $ genbadge coverage -i coverage.xml
 ```
 
 
