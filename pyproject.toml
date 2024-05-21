@@ -12,7 +12,10 @@ dependencies = [
     "dspy-ai==2.4.9",
     "python-dotenv==1.0.1",
     "pymupdf==1.24.2",
-    "wandb"
+    "wandb",
+    "gradio==4.29.0",
+    "textract==1.6.5",
+    "pyperclip"
 ]
 authors = [
     {name = "Magdalena Lederbauer", email = "mlederbauer@ethz.ch"}
@@ -75,6 +78,7 @@ select = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*" = ["D", "PLR2004"]
+"**/app.py" = ["PLR0913"]
 "**/__init__.py" = ["F401", "D103", "D104"]
 
 [tool.ruff.lint.pydocstyle]
@@ -107,6 +111,18 @@ disallow_untyped_defs = true
 disable_error_code = ["import-untyped"]
 
 [[tool.mypy.overrides]]
+module = "pyperclip"
+disallow_untyped_defs = true
+disable_error_code = ["import-untyped"]
+
+[[tool.mypy.overrides]]
+module = ["gradio.*",
+        "gradio"]
+ignore_missing_imports = true
+disable_error_code = ["attr-defined", "import-untyped"]
+
+
+[[tool.mypy.overrides]]
 module = [
     "fitz",
     "dspy",
@@ -116,6 +132,7 @@ module = [
     "email_validator"
 ]
 ignore_missing_imports = true
+disable_error_code = ["attr-defined"]
 
 
 # Ignore certain missing imports

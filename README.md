@@ -49,6 +49,15 @@ NEO4J_PASSWORD=foo
 GROQ_API_KEY=gsk_foo
 ```
 
+## 🎬 App
+
+Run the app from the feature branch with
+
+```
+git checkout feat/4-gui
+python src/glossagen/app.py # access the app on the local URL, e.g. http://127.0.0.1:7860
+```
+
 ## 🛠️ Development installation
 
 To install, run

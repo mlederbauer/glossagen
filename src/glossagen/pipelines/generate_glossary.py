@@ -220,6 +220,8 @@ def generate_glossary(document_directory: str, log_to_wandb_flag: bool = True) -
     print("Generated Glossary:")
     print(glossary)
 
+    glossary = glossary[["Term", "Definition"]]
+
     return glossary
 
 
