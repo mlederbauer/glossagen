@@ -13,7 +13,11 @@ dependencies = [
     "python-dotenv==1.0.1",
     "pymupdf==1.24.2",
     "wandb",
-    "graph_maker @ git+https://github.com/pschwllr/graph_maker.git@main"
+    "graph_maker @ git+https://github.com/pschwllr/graph_maker.git@main",
+    "langchain_community",
+    "langchain_experimental",
+    "langchain_openai",
+    "neo4j"
 ]
 authors = [
     {name = "Magdalena Lederbauer", email = "mlederbauer@ethz.ch"}
@@ -117,7 +121,14 @@ module = [
     "dsp",
     "wandb.*",
     "wandb",
-    "email_validator"
+    "email_validator",
+    "langchain_community",
+    "langchain_experimental",
+    "langchain_openai",
+    "uvloop",
+    "tornado.speedups",
+    "Crypto",
+    "Crypto.*"
 ]
 ignore_missing_imports = true
 

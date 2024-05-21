@@ -13,9 +13,9 @@ from langchain_openai import ChatOpenAI
 from glossagen.utils import ResearchDocLoader
 
 load_dotenv()
-os.environ["NEO4J_URI"] = os.getenv("NEO4J_URI")
-os.environ["NEO4J_USERNAME"] = os.getenv("NEO4J_USERNAME")
-os.environ["NEO4J_PASSWORD"] = os.getenv("NEO4J_PASSWORD")
+os.environ["NEO4J_URI"] = os.getenv("NEO4J_URI", "")
+os.environ["NEO4J_USERNAME"] = os.getenv("NEO4J_USERNAME", "")
+os.environ["NEO4J_PASSWORD"] = os.getenv("NEO4J_PASSWORD", "")
 
 
 def create_documents_from_text_chunks(text: str, max_length: int = 2000) -> List[Document]:
@@ -32,7 +32,7 @@ def create_documents_from_text_chunks(text: str, max_length: int = 2000) -> List
     return documents
 
 
-def main():
+def main() -> None:
     """Orchestrate graph generation from research documents."""
     document_directory = "./papers/Chem. Rev. 2022, 122, 12207-12243"
     # ontology = generate_ontology_from_glossary(document_directory)
@@ -65,7 +65,7 @@ def main():
     # Setting up the Neo4j graph instance
     graph = Neo4jGraph()
 
-    llm = ChatOpenAI(temperature=0, model_name="gpt-4-0125-preview")
+    llm = ChatOpenAI(temperature=0, model_name="gpt-4o")  # type: ignore
     llm_transformer = LLMGraphTransformer(
         llm=llm,
         allowed_nodes=allowed_nodes,

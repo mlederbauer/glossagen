@@ -9,7 +9,7 @@ from glossagen.pipelines import generate_glossary
 from glossagen.utils import init_dspy
 
 
-def generate_ontology_from_glossary(document_directory: str):
+def generate_ontology_from_glossary(document_directory: str) -> Any:
     """Generate ontology from a glossary."""
     glossary = generate_glossary(document_directory).set_index("Term").to_dict()["Definition"]
     ontogen = OntologyGenerator(glossary)
@@ -76,7 +76,7 @@ class OntologyGenerator:
         self.relations_predictor = dspy.TypedPredictor(Glossary2Relations)
         self.labels_predictor = dspy.TypedPredictor(Glossary2Labels)
 
-    def generate_ontology_from_glossary(self, verbose=False) -> Any:
+    def generate_ontology_from_glossary(self, verbose: bool = False) -> Any:
         """
         Generate the glossary based on the research document.
 

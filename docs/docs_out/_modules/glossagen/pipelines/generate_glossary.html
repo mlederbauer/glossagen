@@ -286,7 +286,8 @@
 
     <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">InputField</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s2">&quot;The text to extract the termini technici from.&quot;</span><span class="p">)</span>
     <span class="n">glossary</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TerminusTechnicus</span><span class="p">]</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">OutputField</span><span class="p">(</span>
-        <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;The list of termini technici extracted from the text. ONLY TAKE VERY INPORTANT TERMS.&quot;</span>
+        <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;The list of termini technici extracted from the text.</span>
+<span class="s2">        ONLY TAKE VERY INPORTANT TERMS, no general terms like Chemistry.&quot;&quot;&quot;</span>
     <span class="p">)</span></div>
 
 

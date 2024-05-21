@@ -428,7 +428,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="glossagen.pipelines.generate_glossary.Text2GlossarySignature.model_fields">
-<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'glossary':</span> <span class="pre">FieldInfo(annotation=list[TerminusTechnicus],</span> <span class="pre">required=True,</span> <span class="pre">json_schema_extra={'desc':</span> <span class="pre">'The</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">termini</span> <span class="pre">technici</span> <span class="pre">extracted</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">text.</span> <span class="pre">ONLY</span> <span class="pre">TAKE</span> <span class="pre">VERY</span> <span class="pre">INPORTANT</span> <span class="pre">TERMS.',</span> <span class="pre">'__dspy_field_type':</span> <span class="pre">'output',</span> <span class="pre">'prefix':</span> <span class="pre">'Glossary:'}),</span> <span class="pre">'text':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">json_schema_extra={'desc':</span> <span class="pre">'The</span> <span class="pre">text</span> <span class="pre">to</span> <span class="pre">extract</span> <span class="pre">the</span> <span class="pre">termini</span> <span class="pre">technici</span> <span class="pre">from.',</span> <span class="pre">'__dspy_field_type':</span> <span class="pre">'input',</span> <span class="pre">'prefix':</span> <span class="pre">'Text:'})}</span></em><a class="headerlink" href="#glossagen.pipelines.generate_glossary.Text2GlossarySignature.model_fields" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'glossary':</span> <span class="pre">FieldInfo(annotation=list[TerminusTechnicus],</span> <span class="pre">required=True,</span> <span class="pre">json_schema_extra={'desc':</span> <span class="pre">'The</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">termini</span> <span class="pre">technici</span> <span class="pre">extracted</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">text.\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">ONLY</span> <span class="pre">TAKE</span> <span class="pre">VERY</span> <span class="pre">INPORTANT</span> <span class="pre">TERMS,</span> <span class="pre">no</span> <span class="pre">general</span> <span class="pre">terms</span> <span class="pre">like</span> <span class="pre">Chemistry.',</span> <span class="pre">'__dspy_field_type':</span> <span class="pre">'output',</span> <span class="pre">'prefix':</span> <span class="pre">'Glossary:'}),</span> <span class="pre">'text':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">json_schema_extra={'desc':</span> <span class="pre">'The</span> <span class="pre">text</span> <span class="pre">to</span> <span class="pre">extract</span> <span class="pre">the</span> <span class="pre">termini</span> <span class="pre">technici</span> <span class="pre">from.',</span> <span class="pre">'__dspy_field_type':</span> <span class="pre">'input',</span> <span class="pre">'prefix':</span> <span class="pre">'Text:'})}</span></em><a class="headerlink" href="#glossagen.pipelines.generate_glossary.Text2GlossarySignature.model_fields" title="Link to this definition">¶</a></dt>
 <dd><p>Metadata about the fields defined on the model,
 mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
 <p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
@@ -474,6 +474,251 @@ config (dict): Configuration parameters for the wandb run.</p>
 <dt class="sig sig-object py" id="glossagen.pipelines.generate_glossary.main">
 <span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.generate_glossary.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/glossagen/pipelines/generate_glossary.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.generate_glossary.main" title="Link to this definition">¶</a></dt>
 <dd><p>Demonstrate the generation of a glossary from a research document.</p>
+</dd></dl>
+
+</section>
+<section id="module-glossagen.pipelines.glossary_to_ontology">
+<span id="glossagen-pipelines-glossary-to-ontology-module"></span><h2>glossagen.pipelines.glossary_to_ontology module<a class="headerlink" href="#module-glossagen.pipelines.glossary_to_ontology" title="Link to this heading">¶</a></h2>
+<p>Module to generate an ontology from a glossary.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Labels">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.glossary_to_ontology.</span></span><span class="sig-name descname"><span class="pre">Glossary2Labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels" title="glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels"><span class="pre">OntologyEntityLabels</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#Glossary2Labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Signature</span></code></p>
+<p>Generating a list of entities labels (general overarching classes, e.g. Material, Property, …, Other) from glossary term and description pairs.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Labels.input_text">
+<span class="sig-name descname"><span class="pre">input_text</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.input_text" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Labels.labels">
+<span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels" title="glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels"><span class="pre">OntologyEntityLabels</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.labels" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Labels.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.model_computed_fields" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Labels.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Labels.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'input_text':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">json_schema_extra={'desc':</span> <span class="pre">'Glossary</span> <span class="pre">term</span> <span class="pre">and</span> <span class="pre">description</span> <span class="pre">pairs,</span> <span class="pre">one</span> <span class="pre">by</span> <span class="pre">line.',</span> <span class="pre">'__dspy_field_type':</span> <span class="pre">'input',</span> <span class="pre">'prefix':</span> <span class="pre">'Input</span> <span class="pre">Text:'}),</span> <span class="pre">'labels':</span> <span class="pre">FieldInfo(annotation=list[OntologyEntityLabels],</span> <span class="pre">required=True,</span> <span class="pre">json_schema_extra={'desc':</span> <span class="pre">'List</span> <span class="pre">of</span> <span class="pre">general</span> <span class="pre">labels</span> <span class="pre">categorizing</span> <span class="pre">the</span> <span class="pre">terms.',</span> <span class="pre">'__dspy_field_type':</span> <span class="pre">'output',</span> <span class="pre">'prefix':</span> <span class="pre">'Labels:'})}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.model_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Relations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.glossary_to_ontology.</span></span><span class="sig-name descname"><span class="pre">Glossary2Relations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation" title="glossagen.pipelines.glossary_to_ontology.OntologyRelation"><span class="pre">OntologyRelation</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#Glossary2Relations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Signature</span></code></p>
+<p>Generating a list of relations (single verb) between entities from glossary term and description pairs.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Relations.input_text">
+<span class="sig-name descname"><span class="pre">input_text</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.input_text" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Relations.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.model_computed_fields" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Relations.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Relations.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'input_text':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">json_schema_extra={'desc':</span> <span class="pre">'Glossary</span> <span class="pre">term</span> <span class="pre">and</span> <span class="pre">description</span> <span class="pre">pairs,</span> <span class="pre">one</span> <span class="pre">by</span> <span class="pre">line.',</span> <span class="pre">'__dspy_field_type':</span> <span class="pre">'input',</span> <span class="pre">'prefix':</span> <span class="pre">'Input</span> <span class="pre">Text:'}),</span> <span class="pre">'relations':</span> <span class="pre">FieldInfo(annotation=list[OntologyRelation],</span> <span class="pre">required=True,</span> <span class="pre">json_schema_extra={'desc':</span> <span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">List</span> <span class="pre">of</span> <span class="pre">general</span> <span class="pre">relations</span> <span class="pre">between</span> <span class="pre">glossary</span> <span class="pre">terms</span> <span class="pre">for</span> <span class="pre">an</span> <span class="pre">ontology.\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Short</span> <span class="pre">terms</span> <span class="pre">or</span> <span class="pre">verbs</span> <span class="pre">describing</span> <span class="pre">the</span> <span class="pre">relation.',</span> <span class="pre">'__dspy_field_type':</span> <span class="pre">'output',</span> <span class="pre">'prefix':</span> <span class="pre">'Relations:'})}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.model_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Glossary2Relations.relations">
+<span class="sig-name descname"><span class="pre">relations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation" title="glossagen.pipelines.glossary_to_ontology.OntologyRelation"><span class="pre">OntologyRelation</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.relations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Ontology">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.glossary_to_ontology.</span></span><span class="sig-name descname"><span class="pre">Ontology</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relationships</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#Ontology"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Ontology" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Represent an ontology with labels and relationships.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Ontology.labels">
+<span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Ontology.labels" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Ontology.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Ontology.model_computed_fields" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Ontology.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Ontology.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Ontology.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'labels':</span> <span class="pre">FieldInfo(annotation=Dict[str,</span> <span class="pre">str],</span> <span class="pre">required=True),</span> <span class="pre">'relationships':</span> <span class="pre">FieldInfo(annotation=List[str],</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Ontology.model_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Ontology.print_labels">
+<span class="sig-name descname"><span class="pre">print_labels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#Ontology.print_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Ontology.print_labels" title="Link to this definition">¶</a></dt>
+<dd><p>Print all the labels in the ontology.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Ontology.print_relationships">
+<span class="sig-name descname"><span class="pre">print_relationships</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#Ontology.print_relationships"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Ontology.print_relationships" title="Link to this definition">¶</a></dt>
+<dd><p>Print all the relationships in the ontology.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.Ontology.relationships">
+<span class="sig-name descname"><span class="pre">relationships</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.Ontology.relationships" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.glossary_to_ontology.</span></span><span class="sig-name descname"><span class="pre">OntologyEntityLabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#OntologyEntityLabels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>An ontology label, i.e. an entity label in materials science and chemistry.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.label">
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.label" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.model_computed_fields" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'label':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">title=&quot;A</span> <span class="pre">string</span> <span class="pre">'label:</span> <span class="pre">description'</span>&#160; <span class="pre">describing</span> <span class="pre">a</span> <span class="pre">entity</span> <span class="pre">class.&quot;)}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.model_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.glossary_to_ontology.</span></span><span class="sig-name descname"><span class="pre">OntologyGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">glossary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#OntologyGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyGenerator" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that generates a ontology based on a glossary.</p>
+<section id="id3">
+<h3>Attributes<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>research_doc (ResearchDoc): The research document to generate the glossary from.
+glossary_predictor (dspy.Predict): The predictor used to generate the glossary.</p>
+</div></blockquote>
+</section>
+<section id="id4">
+<h3>Methods<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>generate_glossary: Generates the glossary based on the research document.</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyGenerator.generate_ontology_from_glossary">
+<span class="sig-name descname"><span class="pre">generate_ontology_from_glossary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#OntologyGenerator.generate_ontology_from_glossary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyGenerator.generate_ontology_from_glossary" title="Link to this definition">¶</a></dt>
+<dd><p>Generate the glossary based on the research document.</p>
+<section id="id5">
+<h4>Returns<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<blockquote>
+<div><p>Any: The generated glossary.</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyRelation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.glossary_to_ontology.</span></span><span class="sig-name descname"><span class="pre">OntologyRelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#OntologyRelation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Ontology relation, i.e. relation between two entities.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyRelation.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation.model_computed_fields" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyRelation.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyRelation.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'relation':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">title='A</span> <span class="pre">relation</span> <span class="pre">type</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">ontology.')}</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation.model_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.OntologyRelation.relation">
+<span class="sig-name descname"><span class="pre">relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation.relation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="glossagen.pipelines.glossary_to_ontology.generate_ontology_from_glossary">
+<span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.glossary_to_ontology.</span></span><span class="sig-name descname"><span class="pre">generate_ontology_from_glossary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/glossagen/pipelines/glossary_to_ontology.html#generate_ontology_from_glossary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.glossary_to_ontology.generate_ontology_from_glossary" title="Link to this definition">¶</a></dt>
+<dd><p>Generate ontology from a glossary.</p>
+</dd></dl>
+
+</section>
+<section id="module-glossagen.pipelines.knowledge_graph">
+<span id="glossagen-pipelines-knowledge-graph-module"></span><h2>glossagen.pipelines.knowledge_graph module<a class="headerlink" href="#module-glossagen.pipelines.knowledge_graph" title="Link to this heading">¶</a></h2>
+<p>Pipeline to generate a knowledge graph from research documents.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="glossagen.pipelines.knowledge_graph.create_documents_from_text_chunks">
+<span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.knowledge_graph.</span></span><span class="sig-name descname"><span class="pre">create_documents_from_text_chunks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Document</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/glossagen/pipelines/knowledge_graph.html#create_documents_from_text_chunks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.knowledge_graph.create_documents_from_text_chunks" title="Link to this definition">¶</a></dt>
+<dd><p>Create documents from text by dividing it into chunks of max_length characters.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="glossagen.pipelines.knowledge_graph.main">
+<span class="sig-prename descclassname"><span class="pre">glossagen.pipelines.knowledge_graph.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/glossagen/pipelines/knowledge_graph.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#glossagen.pipelines.knowledge_graph.main" title="Link to this definition">¶</a></dt>
+<dd><p>Orchestrate graph generation from research documents.</p>
 </dd></dl>
 
 </section>
@@ -590,6 +835,59 @@ config (dict): Configuration parameters for the wandb run.</p>
 <li><a class="reference internal" href="#glossagen.pipelines.generate_glossary.generate_glossary"><code class="docutils literal notranslate"><span class="pre">generate_glossary()</span></code></a></li>
 <li><a class="reference internal" href="#glossagen.pipelines.generate_glossary.log_to_wandb"><code class="docutils literal notranslate"><span class="pre">log_to_wandb()</span></code></a></li>
 <li><a class="reference internal" href="#glossagen.pipelines.generate_glossary.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-glossagen.pipelines.glossary_to_ontology">glossagen.pipelines.glossary_to_ontology module</a><ul>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels"><code class="docutils literal notranslate"><span class="pre">Glossary2Labels</span></code></a><ul>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.input_text"><code class="docutils literal notranslate"><span class="pre">Glossary2Labels.input_text</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.labels"><code class="docutils literal notranslate"><span class="pre">Glossary2Labels.labels</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">Glossary2Labels.model_computed_fields</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.model_config"><code class="docutils literal notranslate"><span class="pre">Glossary2Labels.model_config</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Labels.model_fields"><code class="docutils literal notranslate"><span class="pre">Glossary2Labels.model_fields</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations"><code class="docutils literal notranslate"><span class="pre">Glossary2Relations</span></code></a><ul>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.input_text"><code class="docutils literal notranslate"><span class="pre">Glossary2Relations.input_text</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">Glossary2Relations.model_computed_fields</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.model_config"><code class="docutils literal notranslate"><span class="pre">Glossary2Relations.model_config</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.model_fields"><code class="docutils literal notranslate"><span class="pre">Glossary2Relations.model_fields</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Glossary2Relations.relations"><code class="docutils literal notranslate"><span class="pre">Glossary2Relations.relations</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Ontology"><code class="docutils literal notranslate"><span class="pre">Ontology</span></code></a><ul>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Ontology.labels"><code class="docutils literal notranslate"><span class="pre">Ontology.labels</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Ontology.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">Ontology.model_computed_fields</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Ontology.model_config"><code class="docutils literal notranslate"><span class="pre">Ontology.model_config</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Ontology.model_fields"><code class="docutils literal notranslate"><span class="pre">Ontology.model_fields</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Ontology.print_labels"><code class="docutils literal notranslate"><span class="pre">Ontology.print_labels()</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Ontology.print_relationships"><code class="docutils literal notranslate"><span class="pre">Ontology.print_relationships()</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.Ontology.relationships"><code class="docutils literal notranslate"><span class="pre">Ontology.relationships</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels"><code class="docutils literal notranslate"><span class="pre">OntologyEntityLabels</span></code></a><ul>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.label"><code class="docutils literal notranslate"><span class="pre">OntologyEntityLabels.label</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">OntologyEntityLabels.model_computed_fields</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.model_config"><code class="docutils literal notranslate"><span class="pre">OntologyEntityLabels.model_config</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyEntityLabels.model_fields"><code class="docutils literal notranslate"><span class="pre">OntologyEntityLabels.model_fields</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyGenerator"><code class="docutils literal notranslate"><span class="pre">OntologyGenerator</span></code></a><ul>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyGenerator.generate_ontology_from_glossary"><code class="docutils literal notranslate"><span class="pre">OntologyGenerator.generate_ontology_from_glossary()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation"><code class="docutils literal notranslate"><span class="pre">OntologyRelation</span></code></a><ul>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">OntologyRelation.model_computed_fields</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation.model_config"><code class="docutils literal notranslate"><span class="pre">OntologyRelation.model_config</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation.model_fields"><code class="docutils literal notranslate"><span class="pre">OntologyRelation.model_fields</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.OntologyRelation.relation"><code class="docutils literal notranslate"><span class="pre">OntologyRelation.relation</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#glossagen.pipelines.glossary_to_ontology.generate_ontology_from_glossary"><code class="docutils literal notranslate"><span class="pre">generate_ontology_from_glossary()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-glossagen.pipelines.knowledge_graph">glossagen.pipelines.knowledge_graph module</a><ul>
+<li><a class="reference internal" href="#glossagen.pipelines.knowledge_graph.create_documents_from_text_chunks"><code class="docutils literal notranslate"><span class="pre">create_documents_from_text_chunks()</span></code></a></li>
+<li><a class="reference internal" href="#glossagen.pipelines.knowledge_graph.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-glossagen.pipelines.latex_glossary">glossagen.pipelines.latex_glossary module</a><ul>
