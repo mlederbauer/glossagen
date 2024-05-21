@@ -128,9 +128,7 @@ module = [
     "dspy",
     "dsp",
     "wandb.*",
-    "wandb",
-    "gradio.*",
-    "gradio"
+    "wandb"
 ]
 ignore_missing_imports = true
 disable_error_code = ["attr-defined"]
