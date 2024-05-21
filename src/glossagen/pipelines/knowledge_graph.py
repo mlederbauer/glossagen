@@ -1,76 +1,91 @@
-"""Module for generating a knowledge graph out of a document."""
+"""Pipeline to generate a knowledge graph from research documents."""
 
 import datetime
+import os
 from typing import List
 
-# Importing all necessary classes and functions
-from graph_maker import Document, GraphMaker, Neo4jGraphModel, Ontology, OpenAIClient
+from dotenv import load_dotenv
+from langchain_community.graphs import Neo4jGraph
+from langchain_core.documents import Document
+from langchain_experimental.graph_transformers import LLMGraphTransformer
+from langchain_openai import ChatOpenAI
 
-from glossagen.pipelines import generate_glossary
-from glossagen.pipelines.glossary_to_ontology import OntologyGenerator
-from glossagen.utils import ResearchDocLoader, init_dspy
+from glossagen.utils import ResearchDocLoader
 
-
-def generate_ontology_from_glossary(document_directory: str):
-    """Generate ontology from a glossary."""
-    example_glossary = (
-        generate_glossary(document_directory).set_index("Term").to_dict()["Definition"]
-    )
-    ontogen = OntologyGenerator(example_glossary)
-    return ontogen.generate_ontology_from_glossary()
+load_dotenv()
+os.environ["NEO4J_URI"] = os.getenv("NEO4J_URI")
+os.environ["NEO4J_USERNAME"] = os.getenv("NEO4J_USERNAME")
+os.environ["NEO4J_PASSWORD"] = os.getenv("NEO4J_PASSWORD")
 
 
-def generate_summary(text: str, llm: OpenAIClient) -> str:
-    """Generate summary for a given text using a language model."""
-    SYS_PROMPT = """
-    Succinctly summarise the text provided by the user.
-    Respond only with the summary and no other comments."""
-
-    try:
-        return llm.generate(user_message=text, system_message=SYS_PROMPT)
-    except Exception as e:
-        print(f"Failed to generate summary due to: {e}")
-        return ""
-
-
-def create_documents_from_text_chunks(text_chunks: List[str], llm: OpenAIClient) -> List[Document]:
-    """Create documents from text chunks including metadata with summaries."""
+def create_documents_from_text_chunks(text: str, max_length: int = 2000) -> List[Document]:
+    """Create documents from text by dividing it into chunks of max_length characters."""
     current_time = str(datetime.datetime.now())
-    return [
-        Document(
-            text=t,
-            metadata={"summary": generate_summary(t, llm), "generated_at": current_time},  # noqa
-        )
-        for t in text_chunks
-    ]
-
-
-def generate_and_save_graph(docs: List[Document], ontology: Ontology):
-    """Generate a knowledge graph from documents and save to Neo4j."""
-    llm = OpenAIClient(model="gpt-3.5-turbo", temperature=0.1, top_p=0.5)
-    graph_maker = GraphMaker(ontology=ontology, llm_client=llm, verbose=False)
-
-    graph = graph_maker.from_documents(docs, delay_s_between=0)
-    print("Total number of Edges:", len(graph))
-    for edge in graph:
-        print(edge.model_dump(exclude=["metadata"]), "\n")
-
-    neo4j_graph = Neo4jGraphModel(edges=graph, create_indices=False)
-    neo4j_graph.save()
+    documents = []
+    for start in range(0, len(text), max_length):
+        # Extract a substring from the text starting at 'start' up to 'start+max_length'
+        chunk = text[start : start + max_length]
+        documents.append(Document(page_content=chunk, metadata={"generated_at": current_time}))
+    # take doc 4-7 HACK FOR NOW
+    documents = documents[12:16]
+    # documents = documents[8:11]
+    return documents
 
 
 def main():
     """Orchestrate graph generation from research documents."""
-    document_directory = "./data/"
-    ontology = generate_ontology_from_glossary(document_directory)
+    document_directory = "./papers/Chem. Rev. 2022, 122, 12207-12243"
+    # ontology = generate_ontology_from_glossary(document_directory)
+    labels = {
+        "Material": "Various materials used in dentistry and medicine, such as zeolites, glass ionomer cements, acrylic resins, and mineral trioxide aggregate.",  # noqa
+        "Process": "Procedures and methods involved in dental treatments, including root canal irrigation, implant coatings, and zeolite incorporation.",  # noqa
+        "Property": "Characteristics and attributes of materials, like antimicrobial activity and mechanical properties.",  # noqa
+        "Other": "General terms and concepts not falling under the specific categories of material, process, or property, such as volatile organic compounds and ion-embedded zeolites.",  # noqa
+    }
+    relations = [
+        "contain",
+        "incorporate",
+        "enhance",
+        "utilize",
+        "apply",
+        "improve",
+        "prevent",
+        "emit",
+        "detect",
+        "inhibit",
+        "kill",
+        "relate to",
+        "be known for",
+        "adhere to",
+        "flush and disinfect",
+    ]
+    allowed_nodes = list(labels.keys())
+    allowed_relationships = relations
 
-    init_dspy()
-    loader = ResearchDocLoader(document_directory)
+    # Setting up the Neo4j graph instance
+    graph = Neo4jGraph()
+
+    llm = ChatOpenAI(temperature=0, model_name="gpt-4-0125-preview")
+    llm_transformer = LLMGraphTransformer(
+        llm=llm,
+        allowed_nodes=allowed_nodes,
+        allowed_relationships=allowed_relationships,
+        strict_mode=True,
+    )
+
+    loader = ResearchDocLoader(
+        document_directory
+    )  # Update this part with your method to load documents
     research_doc = loader.load()
-    text_chunks = research_doc.paper.split("\n\n")  # Splitting the document into chunks
-    docs = create_documents_from_text_chunks(text_chunks, OpenAIClient(model="gpt-3.5-turbo"))
+    full_text = research_doc.paper  # Assuming `paper` is a string containing the full text
+    docs = create_documents_from_text_chunks(full_text)
 
-    generate_and_save_graph(docs, ontology)
+    graph_documents = llm_transformer.convert_to_graph_documents(docs)
+    for doc in graph_documents:
+        print(f"Nodes:{doc.nodes}")
+        print(f"Relationships:{doc.relationships}")
+
+    graph.add_graph_documents(graph_documents)
 
 
 if __name__ == "__main__":
