@@ -23,7 +23,8 @@ class Text2GlossarySignature(dspy.Signature):
 
     text: str = dspy.InputField(desc="The text to extract the termini technici from.")
     glossary: list[TerminusTechnicus] = dspy.OutputField(
-        desc="The list of termini technici extracted from the text. ONLY TAKE VERY INPORTANT TERMS."
+        desc="""The list of termini technici extracted from the text.
+        ONLY TAKE VERY INPORTANT TERMS, no general terms like Chemistry."""
     )
 
 

@@ -12,6 +12,22 @@ glossagen.pipelines.generate\_glossary module
    :undoc-members:
    :show-inheritance:
 
+glossagen.pipelines.glossary\_to\_ontology module
+-------------------------------------------------
+
+.. automodule:: glossagen.pipelines.glossary_to_ontology
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glossagen.pipelines.knowledge\_graph module
+-------------------------------------------
+
+.. automodule:: glossagen.pipelines.knowledge_graph
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 glossagen.pipelines.latex\_glossary module
 ------------------------------------------
 

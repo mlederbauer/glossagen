@@ -12,7 +12,12 @@ dependencies = [
     "dspy-ai==2.4.9",
     "python-dotenv==1.0.1",
     "pymupdf==1.24.2",
-    "wandb"
+    "wandb",
+    "graph_maker @ git+https://github.com/pschwllr/graph_maker.git@main",
+    "langchain_community",
+    "langchain_experimental",
+    "langchain_openai",
+    "neo4j"
 ]
 authors = [
     {name = "Magdalena Lederbauer", email = "mlederbauer@ethz.ch"}
@@ -57,6 +62,9 @@ glossagen = "glossagen.cli:main"
 
 [tool.hatch.version]
 path = "src/glossagen/__about__.py"
+
+[tool.hatch.metadata]
+allow-direct-references=true
 
 [tool.ruff]
 show-fixes = true
@@ -113,7 +121,14 @@ module = [
     "dsp",
     "wandb.*",
     "wandb",
-    "email_validator"
+    "email_validator",
+    "langchain_community",
+    "langchain_experimental",
+    "langchain_openai",
+    "uvloop",
+    "tornado.speedups",
+    "Crypto",
+    "Crypto.*"
 ]
 ignore_missing_imports = true
 

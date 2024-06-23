@@ -380,7 +380,14 @@
         <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paper</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
             <span class="c1"># If &#39;REFERENCES&#39; is found, cut the text</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">paper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paper</span><span class="p">[:</span> <span class="n">match</span><span class="o">.</span><span class="n">start</span><span class="p">()]</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">paper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paper</span><span class="p">[:</span> <span class="n">match</span><span class="o">.</span><span class="n">start</span><span class="p">()]</span>
+
+        <span class="c1"># if no match is found, cut after last occ of &#39;Acknowledgements&#39; or &#39;Data Availability&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\bAcknowledgements\b|\bData Availability\b&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paper</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">paper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paper</span><span class="p">[:</span> <span class="n">match</span><span class="o">.</span><span class="n">start</span><span class="p">()]</span></div>
 </div>
 
 
