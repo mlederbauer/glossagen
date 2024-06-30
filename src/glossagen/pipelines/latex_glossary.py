@@ -7,7 +7,15 @@ from glossagen.pipelines.generate_glossary import GlossaryGenerator, ResearchDoc
 
 
 def extract_text_from_latex(latex_file_path: str) -> str:
-    """Extract readable text from .tex document, focusing on content between begin and end doc."""
+    """Extract readable text from .tex document, focusing on content between begin and end doc.
+
+    Args:
+        latex_file_path (str): The path to the LaTeX file.
+
+    Returns
+    -------
+        str: The extracted text from the LaTeX file.
+    """
     text = []
     with open(latex_file_path, encoding="utf-8") as file:
         capture = False

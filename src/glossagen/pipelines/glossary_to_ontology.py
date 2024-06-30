@@ -10,7 +10,15 @@ from glossagen.utils import init_dspy
 
 
 def generate_ontology_from_glossary(document_directory: str) -> Any:
-    """Generate ontology from a glossary."""
+    """Generate ontology from a glossary.
+
+    Args:
+        document_directory (str): The directory containing the research documents.
+
+    Returns
+    -------
+        Any: The generated ontology.
+    """
     glossary = generate_glossary(document_directory).set_index("Term").to_dict()["Definition"]
     ontogen = OntologyGenerator(glossary)
     return ontogen.generate_ontology_from_glossary()

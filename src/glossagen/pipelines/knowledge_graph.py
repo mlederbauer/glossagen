@@ -19,7 +19,16 @@ os.environ["NEO4J_PASSWORD"] = os.getenv("NEO4J_PASSWORD", "")
 
 
 def create_documents_from_text_chunks(text: str, max_length: int = 2000) -> List[Document]:
-    """Create documents from text by dividing it into chunks of max_length characters."""
+    """Create documents from text by dividing it into chunks of max_length characters.
+
+    Args:
+        text (str): The text to divide into chunks.
+        max_length (int): The maximum length of each chunk.
+
+    Returns
+    -------
+        List[Document]: The list of documents created from the text chunks.
+    """
     current_time = str(datetime.datetime.now())
     documents = []
     for start in range(0, len(text), max_length):
