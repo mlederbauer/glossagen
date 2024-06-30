@@ -50,10 +50,25 @@ class GlossaryGenerator:
     ----------
         research_doc (ResearchDoc): The research document to generate the glossary from.
         glossary_predictor (dspy.Predict): The predictor used to generate the glossary.
+        chunk_size (int): The size of the chunks to split the research document into.
+        reranker (dspy.TypedChainOfThought): The reranker used to filter important terms.
 
     Methods
     -------
-        generate_glossary: Generates the glossary based on the research document.
+        __init__(self, research_doc: ResearchDoc, chunk_size: int = 20000):
+            Initialize a GlossaryGenerator object.
+
+        normalize_term(self, term: str) -> str:
+            Normalize a term by converting it to lowercase and removing common plural endings.
+
+        deduplicate_entries(self, glossary: list[TerminusTechnicus]) -> list[TerminusTechnicus]:
+            Deduplicate the glossary entries by considering plurals and similar-sounding terms.
+
+        format_nicely(self, glossary: list[TerminusTechnicus]) -> str:
+            Format the glossary nicely.
+
+        generate_glossary_from_doc(self) -> pd.DataFrame:
+            Generate the glossary based on the research document.
 
     """
 
@@ -72,7 +87,15 @@ class GlossaryGenerator:
         self.chunk_size = chunk_size
 
     def normalize_term(self, term: str) -> str:
-        """Normalize a term by converting it to lowercase and removing common plural endings."""
+        """Normalize a term by converting it to lowercase and removing common plural endings.
+
+        Args:
+            term (str): The term to normalize.
+
+        Returns
+        -------
+            str: The normalized term.
+        """
         term = term.lower().strip()
         # Remove common plural endings
         if term.endswith("ies"):
@@ -84,7 +107,15 @@ class GlossaryGenerator:
         return term
 
     def deduplicate_entries(self, glossary: list[TerminusTechnicus]) -> list[TerminusTechnicus]:
-        """Deduplicate the glossary entries by considering plurals and similar-sounding terms."""
+        """Deduplicate the glossary entries by considering plurals and similar-sounding terms.
+
+        Args:
+            glossary (list[TerminusTechnicus]): The glossary to deduplicate.
+
+        Returns
+        -------
+            list[TerminusTechnicus]: The deduplicated glossary.
+        """
         normalized_terms = set()
         deduplicated_glossary = []
 
@@ -112,7 +143,7 @@ class GlossaryGenerator:
             formatted_glossary += f"{i+1}. {term.term}: {term.definition}\n"
         return formatted_glossary
 
-    def generate_glossary_from_doc(self) -> Any:
+    def generate_glossary_from_doc(self) -> pd.DataFrame:
         """
         Generate the glossary based on the research document.
 
@@ -190,7 +221,7 @@ def log_to_wandb(
     wandb.finish()
 
 
-def generate_glossary(document_directory: str, log_to_wandb_flag: bool = True) -> Any:
+def generate_glossary(document_directory: str, log_to_wandb_flag: bool = True) -> pd.DataFrame:
     """
     Generate a glossary based on a research document.
 
@@ -199,7 +230,7 @@ def generate_glossary(document_directory: str, log_to_wandb_flag: bool = True) -
 
     Returns
     -------
-        str: The generated glossary.
+        pd.DataFrame: The generated glossary.
 
     """
     init_dspy()
