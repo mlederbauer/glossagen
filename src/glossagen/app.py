@@ -1,13 +1,16 @@
 """GUI for GlossaGen."""
 
 import base64
+import os
+import shutil
 from typing import Iterable
 
 import gradio as gr  # type: ignore[attr-defined]
-from glossagen.pipelines import GlossaryGenerator
-from glossagen.utils import ResearchDocLoader
 from gradio.themes.base import Base
 from gradio.themes.utils import colors, fonts, sizes
+
+from glossagen.pipelines import GlossaryGenerator
+from glossagen.utils import ResearchDocLoader
 
 glossacol = colors.Color(
     name="glossacol",
@@ -79,7 +82,17 @@ logo_html = (
 
 def process_pdf(file_path: str) -> tuple[str, str]:
     """Process the uploaded PDF file."""
-    loader = ResearchDocLoader(file_path[: file_path.rfind("/")])
+    # Get the directory path
+    directory = file_path[: file_path.rfind("/")]
+
+    # Create the expected filename path
+    expected_file_path = os.path.join(directory, "paper.pdf")
+
+    # Copy the uploaded file to the expected name
+    shutil.copy2(file_path, expected_file_path)
+
+    # Now load with the directory path as before
+    loader = ResearchDocLoader(directory)
     research_doc = loader.load()
     research_doc.extract_metadata()
 
